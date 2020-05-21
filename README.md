@@ -1,5 +1,7 @@
 # el-bot-web
 
+[![GitHub Pages](https://github.com/ElpsyCN/el-bot-web/workflows/gh-pages/badge.svg)](https://bot.elpsy.cn)
+
 > A web panel for el-bot.
 
 Deving...
