@@ -1,4 +1,5 @@
 // import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
 
 export default {
   mode: 'spa',
@@ -6,7 +7,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
+    titleTemplate: '%s · el-bot',
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
@@ -30,7 +31,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/axios'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -38,7 +39,9 @@ export default {
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Nuxt.js modules
@@ -47,14 +50,20 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/toast'
   ],
+
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.API_BASE_URL || 'http://localhost:8080'
+  },
+  // https://github.com/nuxt-community/modules/tree/master/packages/toast
+  toast: {
+    theme: 'outline'
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module

@@ -8,7 +8,8 @@ import {
   mdiChevronRight,
   mdiApi,
   mdiGithub,
-  mdiBug
+  mdiBug,
+  mdiConsole
 } from '@mdi/js'
 
 const icons = {
@@ -21,7 +22,8 @@ const icons = {
   mdiChevronRight,
   mdiApi,
   mdiGithub,
-  mdiBug
+  mdiBug,
+  mdiConsole
 }
 
 export default icons

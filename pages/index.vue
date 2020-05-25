@@ -48,7 +48,7 @@
           </v-list>
         </v-card-text>
         <v-card-actions class="justify-center">
-          <v-btn class="mb-5" color="primary" nuxt to="/start">
+          <v-btn class="mb-5" color="primary" nuxt to="/console">
             Link Start
           </v-btn>
         </v-card-actions>
@@ -72,6 +72,9 @@ export default {
       intro:
         '[El-Bot-Web](https://github.com/ElpsyCN/el-bot-web) 是一个基于 [mirai-api-http](https://github.com/mamoe/mirai-api-http) 实现的 Web 端机器人控制台。'
     }
+  },
+  head: {
+    title: '欢迎使用'
   }
 }
 </script>

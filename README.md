@@ -1,6 +1,8 @@
 # el-bot-web
 
-[![GitHub Pages](https://github.com/ElpsyCN/el-bot-web/workflows/gh-pages/badge.svg)](https://bot.elpsy.cn)
+[![GitHub Pages](https://github.com/ElpsyCN/el-bot-web/workflows/GitHub%20Pages/badge.svg)](https://bot.elpsy.cn)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ElpsyCN/el-bot-web)
+![GitHub](https://img.shields.io/github/license/ElpsyCN/el-bot-web)
 
 > A web panel for el-bot.
 

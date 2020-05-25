@@ -31,6 +31,15 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn v-if="$store.state.auth.qq" class="mr-3">{{
+        $store.state.auth.qq
+      }}</v-btn>
+      <v-btn
+        v-if="$store.state.auth.sessionKey"
+        @click="$store.dispatch('auth/logout')"
+        >退出</v-btn
+      >
+      <v-btn v-else to="/login">登录</v-btn>
       <v-btn icon @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark">
         <v-icon>{{ icons.mdiInvertColors }}</v-icon>
       </v-btn>
@@ -70,6 +79,11 @@ export default {
           icon: icons.mdiCircleOutline,
           title: '开始',
           to: '/start'
+        },
+        {
+          icon: icons.mdiConsole,
+          title: '控制台',
+          to: '/console'
         },
         {
           icon: 'mdi-chart-bubble',
