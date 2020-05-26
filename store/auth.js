@@ -5,7 +5,7 @@ export const state = () => ({
   authKey: localStorage.getItem(prefix + 'authKey') || '',
   qq: localStorage.getItem(prefix + 'qq') || 0,
   sessionKey: localStorage.getItem(prefix + 'sessionKey') || '',
-  verify: false
+  verify: localStorage.getItem(prefix + 'verify') || false
 })
 
 export const mutations = {
@@ -35,6 +35,9 @@ export const mutations = {
   },
   setVerify(state, verify) {
     state.verify = verify
+    verify
+      ? localStorage.setItem(prefix + 'verify', verify)
+      : localStorage.removeItem(prefix + 'verify')
   }
 }
 
@@ -46,9 +49,26 @@ export const actions = {
         qq: state.qq
       })
       .then((res) => {
-        console.log(res.code, res.msg)
         if (res.code === 0) {
           commit('setVerify', true)
+          this.$toast.success('Session 验证成功')
+        } else {
+          this.$toast.info('尝试获取新的 Session')
+          this.dispatch('auth', state.authKey)
+        }
+      })
+  },
+  auth({ commit, dispatch }, authKey) {
+    this.$axios
+      .$post('/auth', {
+        authKey
+      })
+      .then((data) => {
+        if (data.code === 0) {
+          commit('setSessionKey', data.session)
+          dispatch('verify')
+          this.$toast.success('连接成功')
+          this.$router.back()
         }
       })
   },
@@ -57,29 +77,18 @@ export const actions = {
     commit('setAuthKey', params.authKey)
     commit('setQq', params.qq)
     this.$axios.setBaseURL(params.apiUrl)
-    this.$axios
-      .$post('/auth', {
-        authKey: params.authKey
-      })
-      .then((data) => {
-        commit('setSessionKey', data.session)
-        console.log(data.session)
-        console.log({
-          sessionKey: data.session,
-          qq: params.qq
-        })
-        dispatch('verify')
-      })
+    dispatch('auth', params.authKey)
   },
-  release({ commit, state }) {
-    this.$axios
+  async release({ commit, state }) {
+    await this.$axios
       .$post('/release', {
         sessionKey: state.sessionKey,
         qq: state.qq
       })
-      .then((res) => {
-        console.log(res)
-        this.$toast.success('已退出账号')
+      .then((data) => {
+        if (data.code === 0) {
+          this.$toast.success('已退出账号')
+        }
       })
     commit('setSessionKey', '')
   },
@@ -88,5 +97,6 @@ export const actions = {
     commit('setApiUrl', '')
     commit('setAuthKey', '')
     commit('setQq', 0)
+    commit('setVerify', false)
   }
 }

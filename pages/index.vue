@@ -1,7 +1,7 @@
 <template>
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
-      <div class="text-center my-3">
+      <div class="text-center mb-3">
         <bot-logo />
       </div>
       <v-card>

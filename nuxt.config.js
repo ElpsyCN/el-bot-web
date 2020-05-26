@@ -62,7 +62,8 @@ export default {
   },
   // https://github.com/nuxt-community/modules/tree/master/packages/toast
   toast: {
-    theme: 'outline'
+    theme: 'outline',
+    duration: 3000
   },
   /*
    ** vuetify module configuration

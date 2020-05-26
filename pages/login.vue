@@ -1,12 +1,25 @@
 <template>
   <v-flex class="text-center">
     <bot-logo class="mx-auto"></bot-logo>
+    <v-alert
+      border="left"
+      colored-border
+      color="deep-purple accent-4"
+      elevation="2"
+      class="pl-4 -text-left"
+    >
+      如果您想要使用 http（譬如懒得签发 https 证书，想要直接使用
+      http://IP地址:端口号），请访问
+      <a href="http://bot.elpsy.cn">http://bot.elpsy.cn</a>，而不是
+      <a href="https://bot.elpsy.cn">https://bot.elpsy.cn</a>。
+    </v-alert>
     <v-card class="mx-auto pa-3" max-width="500">
       <v-form ref="form" v-model="valid">
         <v-text-field
           v-model="apiUrl"
           :rules="apiUrlRules"
           label="API URL"
+          placeholder="http:// or https://"
           required
         ></v-text-field>
         <v-text-field
@@ -52,7 +65,7 @@ export default {
     return {
       valid: false,
       apiUrl: process.env.API_BASE_URL || '',
-      apiUrlRules: [(v) => !!v || 'authKey is required'],
+      apiUrlRules: [(v) => !!v || 'API URL 是必须的'],
       authKey: process.env.authKey || 'ELPSY-BOT',
       authKeyRules: [
         (v) => !!v || 'authKey is required',
@@ -66,20 +79,13 @@ export default {
       checkbox: false
     }
   },
-  mounted() {
-    this.$store.dispatch('auth/verify')
-  },
   methods: {
     login() {
-      this.$store
-        .dispatch('auth/login', {
-          apiUrl: this.apiUrl,
-          authKey: this.authKey,
-          qq: this.qq
-        })
-        .then((res) => {
-          console.log(res)
-        })
+      this.$store.dispatch('auth/login', {
+        apiUrl: this.apiUrl,
+        authKey: this.authKey,
+        qq: this.qq
+      })
     },
     reset() {
       this.$refs.form.reset()

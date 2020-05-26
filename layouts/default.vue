@@ -1,12 +1,6 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      clipped
-      fixed
-      app
-    >
+    <v-navigation-drawer v-model="drawer" clipped fixed app>
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -26,12 +20,9 @@
     </v-navigation-drawer>
     <v-app-bar clipped-left fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn v-if="$store.state.auth.qq" class="mr-3">{{
+      <v-btn v-if="$store.state.auth.qq" class="mr-3" text>{{
         $store.state.auth.qq
       }}</v-btn>
       <v-btn
@@ -39,7 +30,7 @@
         @click="$store.dispatch('auth/logout')"
         >退出</v-btn
       >
-      <v-btn v-else to="/login">登录</v-btn>
+      <v-btn v-else nuxt to="/login">登录</v-btn>
       <v-btn icon @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark">
         <v-icon>{{ icons.mdiInvertColors }}</v-icon>
       </v-btn>
@@ -91,7 +82,6 @@ export default {
           to: '/about'
         }
       ],
-      miniVariant: false,
       title: 'El Bot'
     }
   }
