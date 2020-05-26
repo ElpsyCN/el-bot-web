@@ -80,16 +80,20 @@ export const actions = {
     await dispatch('auth', params.authKey)
   },
   async release({ commit, state }) {
-    await this.$axios
-      .$post('/release', {
-        sessionKey: state.sessionKey,
-        qq: state.qq
-      })
-      .then((data) => {
-        if (data.code === 0) {
-          this.$toast.success('已退出账号')
-        }
-      })
+    try {
+      await this.$axios
+        .$post('/release', {
+          sessionKey: state.sessionKey,
+          qq: state.qq
+        })
+        .then((data) => {
+          if (data.code === 0) {
+            this.$toast.success('已退出账号')
+          }
+        })
+    } catch (error) {
+      console.log(error)
+    }
     commit('setSessionKey', '')
   },
   async logout({ commit, dispatch }) {
