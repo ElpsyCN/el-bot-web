@@ -50,7 +50,6 @@ export default function({ app, $axios, store }) {
   }
 
   $axios.onResponse((res) => {
-    console.log(res)
     if (res.status === 200) {
       if (res.data.code) {
         const message = handleStatusCode(res.data.code)

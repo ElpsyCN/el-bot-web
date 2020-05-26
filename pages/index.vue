@@ -60,7 +60,7 @@
 <script>
 import VueMarkdown from 'vue-markdown'
 import BotLogo from '~/components/BotLogo.vue'
-import icons from '~/assets/utils/icon'
+import icons from '~/assets/utils/icons'
 export default {
   components: {
     BotLogo,

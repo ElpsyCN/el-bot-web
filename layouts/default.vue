@@ -36,11 +36,11 @@
       </v-btn>
     </v-app-bar>
     <v-content>
-      <v-container>
+      <v-container fluid>
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer app>
+    <v-footer>
       <span
         >&copy;
         <a
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import icons from '~/assets/utils/icon'
+import icons from '~/assets/utils/icons'
 export default {
   data() {
     return {

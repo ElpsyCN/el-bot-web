@@ -42,8 +42,8 @@ export const mutations = {
 }
 
 export const actions = {
-  verify({ commit, state }) {
-    this.$axios
+  async verify({ commit, state }) {
+    await this.$axios
       .$post('/verify', {
         sessionKey: state.sessionKey,
         qq: state.qq
@@ -53,31 +53,30 @@ export const actions = {
           commit('setVerify', true)
           this.$toast.success('Session 验证成功')
         } else {
-          this.$toast.info('尝试获取新的 Session')
-          this.dispatch('auth', state.authKey)
+          this.$toast.info('请尝试重新登录')
         }
       })
   },
-  auth({ commit, dispatch }, authKey) {
-    this.$axios
+  async auth({ commit, dispatch }, authKey) {
+    await this.$axios
       .$post('/auth', {
         authKey
       })
-      .then((data) => {
+      .then(async (data) => {
         if (data.code === 0) {
           commit('setSessionKey', data.session)
-          dispatch('verify')
           this.$toast.success('连接成功')
-          this.$router.back()
+          this.$router.push('/console')
+          await dispatch('verify')
         }
       })
   },
-  login({ commit, dispatch }, params) {
+  async login({ commit, dispatch }, params) {
     commit('setApiUrl', params.apiUrl)
     commit('setAuthKey', params.authKey)
     commit('setQq', params.qq)
     this.$axios.setBaseURL(params.apiUrl)
-    dispatch('auth', params.authKey)
+    await dispatch('auth', params.authKey)
   },
   async release({ commit, state }) {
     await this.$axios
@@ -92,11 +91,12 @@ export const actions = {
       })
     commit('setSessionKey', '')
   },
-  logout({ commit, dispatch }) {
-    dispatch('release')
+  async logout({ commit, dispatch }) {
+    await dispatch('release')
     commit('setApiUrl', '')
     commit('setAuthKey', '')
     commit('setQq', 0)
     commit('setVerify', false)
+    this.$router.push('/')
   }
 }

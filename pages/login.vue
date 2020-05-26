@@ -13,7 +13,7 @@
       <a href="http://bot.elpsy.cn">http://bot.elpsy.cn</a>，而不是
       <a href="https://bot.elpsy.cn">https://bot.elpsy.cn</a>。
     </v-alert>
-    <v-card class="mx-auto pa-3" max-width="500">
+    <v-card class="mx-auto pa-3" max-width="500" :loading="loading">
       <v-form ref="form" v-model="valid">
         <v-text-field
           v-model="apiUrl"
@@ -63,6 +63,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       valid: false,
       apiUrl: process.env.API_BASE_URL || '',
       apiUrlRules: [(v) => !!v || 'API URL 是必须的'],
@@ -80,12 +81,14 @@ export default {
     }
   },
   methods: {
-    login() {
-      this.$store.dispatch('auth/login', {
+    async login() {
+      this.loading = true
+      await this.$store.dispatch('auth/login', {
         apiUrl: this.apiUrl,
         authKey: this.authKey,
         qq: this.qq
       })
+      this.loading = false
     },
     reset() {
       this.$refs.form.reset()

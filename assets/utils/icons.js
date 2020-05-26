@@ -2,28 +2,30 @@ import {
   mdiMenu,
   mdiApps,
   mdiCircleOutline,
-  mdiStarOutline,
   mdiInvertColors,
   mdiChevronLeft,
   mdiChevronRight,
   mdiApi,
   mdiGithub,
   mdiBug,
-  mdiConsole
+  mdiConsole,
+  mdiAccount,
+  mdiAccountMultiple
 } from '@mdi/js'
 
 const icons = {
   mdiMenu,
   mdiApps,
   mdiCircleOutline,
-  mdiStarOutline,
   mdiInvertColors,
   mdiChevronLeft,
   mdiChevronRight,
   mdiApi,
   mdiGithub,
   mdiBug,
-  mdiConsole
+  mdiConsole,
+  mdiAccount,
+  mdiAccountMultiple
 }
 
 export default icons
