@@ -1,15 +1,6 @@
 export const state = () => ({
   message: '',
-  list: [
-    {
-      sender: '',
-      messageChain: [{ text: '你好' }]
-    },
-    {
-      sender: '',
-      messageChain: [{ text: '你好2' }]
-    }
-  ],
+  list: [],
   target: 0,
   type: 'group'
 })
@@ -31,7 +22,7 @@ export const mutations = {
 }
 
 export const actions = {
-  sendFriendMessage(state, messageChain) {
+  sendFriendMessage({ state }, messageChain) {
     this.$axios
       .$post('/sendFriendMessage', {
         target: state.target,
