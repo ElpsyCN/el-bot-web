@@ -1,19 +1,17 @@
 <template>
   <v-card>
-    <v-toolbar color="primary" dark>
+    <v-toolbar color="primary" dark flat>
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-      <!-- <v-switch
-        v-model="switch"
-        :label="switch ? '群列表' : '好友列表'"
-      ></v-switch> -->
       <v-toolbar-title>{{ listName }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-toolbar>
-    <friend-list v-if="activePanel === 'friends'"></friend-list>
-    <group-list v-if="activePanel === 'groups'"></group-list>
+    <v-list class="py-0" height="72vh" style="overflow:auto">
+      <friend-list v-if="activePanel === 'friends'"></friend-list>
+      <group-list v-if="activePanel === 'groups'"></group-list>
+    </v-list>
     <v-bottom-navigation v-model="activePanel" shift grow color="primary">
       <v-btn value="friends">
         <span>好友列表</span>

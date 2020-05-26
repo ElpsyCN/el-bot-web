@@ -22,9 +22,9 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn v-if="$store.state.auth.qq" class="mr-3" text>{{
-        $store.state.auth.qq
-      }}</v-btn>
+      <v-avatar v-if="$store.state.auth.qq" size="40" class="mr-3">
+        <v-img :src="avatar" :title="$store.state.auth.qq"></v-img>
+      </v-avatar>
       <v-btn
         v-if="$store.state.auth.sessionKey"
         @click="$store.dispatch('auth/logout')"
@@ -55,6 +55,7 @@
 
 <script>
 import icons from '~/assets/utils/icons'
+import { getAvatarById } from '~/assets/utils/index'
 export default {
   data() {
     return {
@@ -72,6 +73,11 @@ export default {
           to: '/start'
         },
         {
+          icon: icons.mdiViewDashboard,
+          title: '仪表盘',
+          to: '/dashboard'
+        },
+        {
           icon: icons.mdiConsole,
           title: '控制台',
           to: '/console'
@@ -83,6 +89,11 @@ export default {
         }
       ],
       title: 'El Bot'
+    }
+  },
+  computed: {
+    avatar() {
+      return getAvatarById(this.$store.state.auth.qq, 'qq', 100)
     }
   }
 }

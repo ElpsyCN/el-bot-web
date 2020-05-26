@@ -10,7 +10,8 @@ import {
   mdiBug,
   mdiConsole,
   mdiAccount,
-  mdiAccountMultiple
+  mdiAccountMultiple,
+  mdiViewDashboard
 } from '@mdi/js'
 
 const icons = {
@@ -25,7 +26,8 @@ const icons = {
   mdiBug,
   mdiConsole,
   mdiAccount,
-  mdiAccountMultiple
+  mdiAccountMultiple,
+  mdiViewDashboard
 }
 
 export default icons

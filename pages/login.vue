@@ -67,12 +67,12 @@ export default {
       valid: false,
       apiUrl: process.env.API_BASE_URL || '',
       apiUrlRules: [(v) => !!v || 'API URL 是必须的'],
-      authKey: process.env.authKey || 'ELPSY-BOT',
+      authKey: process.env.AUTH_KEY || '',
       authKeyRules: [
         (v) => !!v || 'authKey is required',
         (v) => (v && v.length >= 8) || 'authKey 最短为 8 位'
       ],
-      qq: '996955042',
+      qq: process.env.QQ || '',
       qqRules: [
         (v) => !!v || 'QQ is required',
         (v) => /^[1-9][0-9]{4,9}$/gi.test(v) || '不是有效的 QQ 号'

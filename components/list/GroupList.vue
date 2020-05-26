@@ -1,28 +1,39 @@
 <template>
-  <v-list class="py-0" height="520" dense style="overflow:auto">
-    <v-list-item-group>
-      <v-list-item v-for="item in list" :key="item.id">
-        <v-list-item-content>
-          <v-list-item-title v-text="item.name"></v-list-item-title>
-        </v-list-item-content>
+  <v-list-item-group color="primary">
+    <v-list-item
+      v-for="item in list"
+      :key="item.id"
+      @click="setTarget(item.id)"
+    >
+      <item-avatar :id="item.id" type="group"></item-avatar>
 
-        <v-list-item-icon>
-          <v-icon
-            :color="getColorByPermission(item.permission)"
-            :title="getRoleByPermission(item.permission)"
-          >
-            {{ icons.mdiAccountMultiple }}
-          </v-icon>
-        </v-list-item-icon>
-      </v-list-item>
-    </v-list-item-group>
-  </v-list>
+      <v-list-item-content>
+        <v-list-item-title
+          :title="item.id"
+          v-text="item.name"
+        ></v-list-item-title>
+      </v-list-item-content>
+
+      <v-list-item-icon>
+        <v-icon
+          :color="getColorByPermission(item.permission)"
+          :title="getRoleByPermission(item.permission)"
+        >
+          {{ icons.mdiAccount }}
+        </v-icon>
+      </v-list-item-icon>
+    </v-list-item>
+  </v-list-item-group>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import icons from '~/assets/utils/icons'
+import ItemAvatar from '~/components/list/ItemAvatar'
 export default {
+  components: {
+    ItemAvatar
+  },
   data() {
     return {
       icons
@@ -35,6 +46,10 @@ export default {
     this.$store.dispatch('groups/get')
   },
   methods: {
+    setTarget(target) {
+      this.$store.commit('messages/setType', 'group')
+      this.$store.commit('messages/setTarget', target)
+    },
     getColorByPermission(permission) {
       let color = 'gray'
       switch (permission) {
