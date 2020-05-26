@@ -12,6 +12,7 @@
       class="mt-2"
       :disabled="!message"
       color="primary"
+      @keyup.enter="sendMessage"
       @click="sendMessage"
       block
     >

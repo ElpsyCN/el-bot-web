@@ -24,6 +24,7 @@
           <a
             style="color: gray;text-decoration: none"
             href="https://github.com/ElpsyCN/el-bot-web"
+            target="_blank"
             >ElpsyCN</a
           ></span
         >

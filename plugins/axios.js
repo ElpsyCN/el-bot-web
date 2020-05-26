@@ -55,6 +55,15 @@ export default function({ app, $axios, store }) {
         const message = handleStatusCode(res.data.code)
         if (message) {
           app.$toast.error(message)
+          if (res.data.code === 3) {
+            app.$toast.info('正在自动尝试重新建立连接...')
+            const prefix = 'el-bot-'
+            store.dispatch('auth/login', {
+              apiUrl: localStorage.getItem(prefix + 'apiUrl'),
+              authKey: localStorage.getItem(prefix + 'authKey'),
+              qq: localStorage.getItem(prefix + 'qq')
+            })
+          }
         }
       }
     }

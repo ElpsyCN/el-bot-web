@@ -68,7 +68,7 @@ export const actions = {
           commit('setSessionKey', data.session)
           this.$toast.success('连接成功')
           await dispatch('verify')
-          this.$router.push('/console')
+          this.$router.push('/dashboard')
         }
       })
   },
