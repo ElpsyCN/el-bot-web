@@ -13,8 +13,8 @@
       <a href="http://bot.elpsy.cn">http://bot.elpsy.cn</a>，而不是
       <a href="https://bot.elpsy.cn">https://bot.elpsy.cn</a>。
     </v-alert>
-    <v-card class="mx-auto pa-3" max-width="500" :loading="loading">
-      <v-form ref="form" v-model="valid">
+    <v-card class="mx-auto" max-width="500" :loading="loading">
+      <v-form ref="form" class="pa-3" v-model="valid">
         <v-text-field
           v-model="apiUrl"
           :rules="apiUrlRules"

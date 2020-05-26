@@ -1,14 +1,20 @@
 <template>
-  <v-form ref="form" v-model="valid" class="text-right">
+  <v-form ref="form" class="text-right">
     <v-textarea
       v-model="message"
       outlined
       name="message"
       placeholder="想 BB 些什么？"
+      hide-details
       required
-      :rules="messageRules"
     ></v-textarea>
-    <v-btn :disabled="!valid" color="primary" @click="sendMessage">
+    <v-btn
+      class="mt-2"
+      :disabled="!message"
+      color="primary"
+      @click="sendMessage"
+      block
+    >
       发送
     </v-btn>
   </v-form>
@@ -18,8 +24,7 @@
 export default {
   data() {
     return {
-      valid: false,
-      messageRules: [(v) => !!v || '发空消息有啥用？']
+      valid: false
     }
   },
   computed: {

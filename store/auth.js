@@ -42,7 +42,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async verify({ commit, state }) {
+  async verify({ commit, dispatch, state }) {
     await this.$axios
       .$post('/verify', {
         sessionKey: state.sessionKey,
@@ -56,6 +56,7 @@ export const actions = {
           this.$toast.info('请尝试重新登录')
         }
       })
+    dispatch('user/me', null, { root: true })
   },
   async auth({ commit, dispatch }, authKey) {
     await this.$axios

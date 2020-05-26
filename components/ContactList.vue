@@ -8,7 +8,7 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-list class="py-0" height="72vh" style="overflow:auto">
+    <v-list class="py-0" height="74vh" style="overflow:auto">
       <friend-list v-if="activePanel === 'friends'"></friend-list>
       <group-list v-if="activePanel === 'groups'"></group-list>
     </v-list>

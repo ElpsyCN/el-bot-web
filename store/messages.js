@@ -1,10 +1,24 @@
 export const state = () => ({
   message: '',
+  list: [
+    {
+      sender: '',
+      messageChain: [{ text: '你好' }]
+    },
+    {
+      sender: '',
+      messageChain: [{ text: '你好2' }]
+    }
+  ],
   target: 0,
   type: 'group'
 })
 
 export const mutations = {
+  add(state, message) {
+    state.list.push(message)
+    console.log(message)
+  },
   setMessage(state, message) {
     state.message = message
   },
@@ -17,7 +31,31 @@ export const mutations = {
 }
 
 export const actions = {
-  send({ state }) {
+  sendFriendMessage(state, messageChain) {
+    this.$axios
+      .$post('/sendFriendMessage', {
+        target: state.target,
+        messageChain
+      })
+      .then((data) => {
+        if (data.code === 0) {
+          this.$toast.success('发送成功')
+        }
+      })
+  },
+  sendGroupMessage({ state }, messageChain) {
+    this.$axios
+      .$post('/sendGroupMessage', {
+        target: state.target,
+        messageChain
+      })
+      .then((data) => {
+        if (data.code === 0) {
+          this.$toast.success('发送成功')
+        }
+      })
+  },
+  send({ commit, dispatch, rootState, state }) {
     if (!state.target) {
       this.$toast.error('请选中你想要发送的群或好友')
       return
@@ -28,27 +66,16 @@ export const actions = {
       text: state.message
     })
     if (state.type === 'group') {
-      this.$axios
-        .$post('/sendGroupMessage', {
-          target: state.target,
-          messageChain
-        })
-        .then((data) => {
-          if (data.code === 0) {
-            this.$toast.success('发送成功')
-          }
-        })
+      dispatch('sendGroupMessage', messageChain)
     } else if (state.type === 'friend') {
-      this.$axios
-        .$post('/sendFriendMessage', {
-          target: state.target,
-          messageChain
-        })
-        .then((data) => {
-          if (data.code === 0) {
-            this.$toast.success('发送成功')
-          }
-        })
+      dispatch('sendFriendMessage', messageChain)
     }
+    commit('add', {
+      sender: {
+        id: rootState.auth.qq
+      },
+      messageChain
+    })
+    commit('setMessage', '')
   }
 }
