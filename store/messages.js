@@ -8,7 +8,9 @@ export const state = () => ({
 export const mutations = {
   add(state, message) {
     state.list.push(message)
-    console.log(message)
+  },
+  remove(state, messageId) {
+    state.list = state.list.filter((msg) => messageId !== msg.id)
   },
   setMessage(state, message) {
     state.message = message
@@ -22,8 +24,8 @@ export const mutations = {
 }
 
 export const actions = {
-  sendFriendMessage({ state }, messageChain) {
-    this.$axios
+  async sendFriendMessage({ state }, messageChain) {
+    return await this.$axios
       .$post('/sendFriendMessage', {
         target: state.target,
         messageChain
@@ -31,11 +33,12 @@ export const actions = {
       .then((data) => {
         if (data.code === 0) {
           this.$toast.success('发送成功')
+          return data.messageId
         }
       })
   },
-  sendGroupMessage({ state }, messageChain) {
-    this.$axios
+  async sendGroupMessage({ state }, messageChain) {
+    return await this.$axios
       .$post('/sendGroupMessage', {
         target: state.target,
         messageChain
@@ -43,10 +46,12 @@ export const actions = {
       .then((data) => {
         if (data.code === 0) {
           this.$toast.success('发送成功')
+          return data.messageId
         }
       })
   },
-  send({ commit, dispatch, rootState, state }) {
+  // 发送消息
+  async send({ commit, dispatch, rootState, state }) {
     if (!state.target) {
       this.$toast.error('请选中你想要发送的群或好友')
       return
@@ -56,17 +61,34 @@ export const actions = {
       type: 'Plain',
       text: state.message
     })
+    let messageId = 0
     if (state.type === 'group') {
-      dispatch('sendGroupMessage', messageChain)
+      messageId = await dispatch('sendGroupMessage', messageChain)
     } else if (state.type === 'friend') {
-      dispatch('sendFriendMessage', messageChain)
+      messageId = await dispatch('sendFriendMessage', messageChain)
     }
     commit('add', {
+      id: messageId,
       sender: {
         id: rootState.auth.qq
       },
+      target: state.target,
+      type: state.type,
       messageChain
     })
     commit('setMessage', '')
+  },
+  // 撤回消息
+  recall({ commit }, target) {
+    this.$axios
+      .$post('/recall', {
+        target
+      })
+      .then((data) => {
+        if (data.code === 0) {
+          this.$toast.success('撤回成功')
+          commit('remove', target)
+        }
+      })
   }
 }

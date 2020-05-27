@@ -4,7 +4,7 @@ function getAvatarById(id, type, size) {
   if (type === 'qq') {
     url = `https://q1.qlogo.cn/g?b=qq&nk=${id}&s=${size}`
   } else if (type === 'group') {
-    url = `https://p.qlogo.cn/gh/${id}/${id}/${size}/`
+    url = `https://p.qlogo.cn/gh/${id}/${id}/${size}`
   }
   return url
 }

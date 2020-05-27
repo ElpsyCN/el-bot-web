@@ -2,6 +2,12 @@
   <v-app dark>
     <nav-drawer :drawer="drawer"></nav-drawer>
     <v-app-bar clipped-left fixed app>
+      <v-progress-linear
+        :active="$store.state.loading"
+        indeterminate
+        absolute
+        bottom
+      ></v-progress-linear>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
@@ -17,7 +23,11 @@
         >退出</v-btn
       >
       <v-btn v-else nuxt to="/login">登录</v-btn>
-      <v-btn icon @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark">
+      <v-btn
+        class="ml-2"
+        icon
+        @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark"
+      >
         <v-icon>{{ icons.mdiInvertColors }}</v-icon>
       </v-btn>
     </v-app-bar>

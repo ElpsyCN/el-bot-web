@@ -43,6 +43,7 @@ function handleStatusCode(code) {
 export default function({ app, $axios, store }) {
   if (store.state.auth.sessionKey) {
     $axios.onRequest((config) => {
+      store.commit('setLoading', true)
       if (config.method === 'post' && config.data) {
         config.data.sessionKey = store.state.auth.sessionKey
       }
@@ -50,6 +51,7 @@ export default function({ app, $axios, store }) {
   }
 
   $axios.onResponse((res) => {
+    store.commit('setLoading', false)
     if (res.status === 200) {
       if (res.data.code) {
         const message = handleStatusCode(res.data.code)

@@ -17,6 +17,11 @@
         </template>
         <v-card v-if="item.messageChain">
           <v-card-text>{{ item.messageChain[0].text }}</v-card-text>
+          <v-card-actions class="justify-end">
+            <v-btn small @click="$store.dispatch('messages/recall', item.id)">
+              撤回
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-timeline-item>
     </v-timeline>
