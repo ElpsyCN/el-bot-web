@@ -1,24 +1,18 @@
-$colors-primary: #2196f3;
+$scrollbar-color: gray;
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 2px;
-  background-color: rgba(255, 255, 255, 0.1);
+  width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 2px;
-  background-color: rgba($colors-primary, 0.5);
+  border-radius: 3px;
+  background-color: rgba($scrollbar-color, 0.4);
 
   &:window-inactive {
-    background-color: rgba($colors-primary, 0.3);
+    background-color: rgba($scrollbar-color, 0.2);
   }
 
   &:active {
-    background-color: rgba($colors-primary, 0.7);
+    background-color: rgba($scrollbar-color, 0.6);
   }
 }

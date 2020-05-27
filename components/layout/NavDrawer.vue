@@ -36,15 +36,9 @@
 <script>
 import icons from '~/assets/utils/icons'
 export default {
-  props: {
-    icons,
-    drawer: {
-      type: Boolean,
-      default: false
-    }
-  },
   data() {
     return {
+      icons,
       items: [
         {
           icon: 'mdi-apps',
@@ -73,8 +67,16 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    drawer: {
+      get() {
+        return this.$store.state.drawer
+      },
+      set(val) {
+        this.$store.commit('setDrawer', val)
+      }
+    }
   }
 }
 </script>
-
-<style></style>

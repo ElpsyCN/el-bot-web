@@ -1,14 +1,8 @@
 <template>
   <v-app dark>
-    <nav-drawer :drawer="drawer"></nav-drawer>
+    <nav-drawer></nav-drawer>
     <v-app-bar clipped-left fixed app>
-      <v-progress-linear
-        :active="$store.state.loading"
-        indeterminate
-        absolute
-        bottom
-      ></v-progress-linear>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="$store.dispatch('toggleDrawer')" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-avatar v-if="$store.state.auth.qq" size="40" class="mr-3">
@@ -30,6 +24,12 @@
       >
         <v-icon>{{ icons.mdiInvertColors }}</v-icon>
       </v-btn>
+      <v-progress-linear
+        :active="$store.state.loading"
+        indeterminate
+        absolute
+        bottom
+      ></v-progress-linear>
     </v-app-bar>
     <v-content>
       <v-container fluid>
@@ -50,7 +50,6 @@ export default {
   data() {
     return {
       icons,
-      drawer: false,
       title: 'El Bot'
     }
   },
