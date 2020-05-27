@@ -55,6 +55,9 @@ export default {
   },
   methods: {
     getAvatarById
+  },
+  created() {
+    this.$axios.setBaseURL(this.$store.state.auth.apiUrl)
   }
 }
 </script>
