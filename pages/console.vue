@@ -1,12 +1,12 @@
 <template>
-  <v-row dense="">
+  <v-row dense>
     <v-col cols="12" sm="3">
       <contact-list></contact-list>
     </v-col>
     <v-col cols="12" sm="9">
       <v-col cols="12">
-        <send-message></send-message>
         <message-list></message-list>
+        <send-message></send-message>
       </v-col>
     </v-col>
   </v-row>

@@ -1,6 +1,6 @@
 <template>
   <v-row dense>
-    <v-col cols="12" sm="4" v-for="dependency in panels" :key="dependency.name">
+    <v-col v-for="dependency in panels" :key="dependency.name" cols="12" sm="4">
       <version-card :dependency="dependency"></version-card>
     </v-col>
     <v-col cols="12">

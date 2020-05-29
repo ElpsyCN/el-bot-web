@@ -14,7 +14,7 @@
       <a href="https://bot.elpsy.cn">https://bot.elpsy.cn</a>。
     </v-alert>
     <v-card class="mx-auto" max-width="500" :loading="loading">
-      <v-form ref="form" class="pa-3" v-model="valid">
+      <v-form ref="form" v-model="valid" class="pa-3">
         <v-text-field
           v-model="apiUrl"
           :rules="apiUrlRules"

@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card outlined>
     <v-toolbar color="primary" dark flat>
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
       <v-toolbar-title>{{ listName }}</v-toolbar-title>
@@ -12,7 +12,13 @@
       <friend-list v-if="activePanel === 'friends'"></friend-list>
       <group-list v-if="activePanel === 'groups'"></group-list>
     </v-list>
-    <v-bottom-navigation v-model="activePanel" shift grow color="primary">
+    <v-bottom-navigation
+      v-model="activePanel"
+      shift
+      grow
+      color="primary"
+      style="box-shadow: none"
+    >
       <v-btn value="friends">
         <span>好友列表</span>
         <v-icon>{{ icons.mdiAccount }}</v-icon>

@@ -1,11 +1,12 @@
 <!-- v-for="(message, i) in $store.state.messages.list" -->
 
 <template>
-  <div>
-    <v-timeline dense align-top reverse="">
+  <v-card outlined height="55vh" class="message-list-container">
+    <v-timeline dense align-top reverse="" style="height:55vh;overflow: auto">
       <v-timeline-item
-        v-for="(item, i) in $store.state.messages.list.slice().reverse()"
+        v-for="(item, i) in $store.state.messages.list.slice()"
         :key="i"
+        class="message-item"
       >
         <template v-slot:icon>
           <v-avatar size="40">
@@ -25,7 +26,7 @@
         </v-card>
       </v-timeline-item>
     </v-timeline>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -37,4 +38,14 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.message-list-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  overflow-y: auto;
+}
+.message-item {
+  justify-content: flex-end;
+}
+</style>

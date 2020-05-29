@@ -11,7 +11,9 @@ import {
   mdiConsole,
   mdiAccount,
   mdiAccountMultiple,
-  mdiViewDashboard
+  mdiViewDashboard,
+  mdiImage,
+  mdiImageFilterDrama
 } from '@mdi/js'
 
 const icons = {
@@ -27,7 +29,9 @@ const icons = {
   mdiConsole,
   mdiAccount,
   mdiAccountMultiple,
-  mdiViewDashboard
+  mdiViewDashboard,
+  mdiImage,
+  mdiImageFilterDrama
 }
 
 export default icons

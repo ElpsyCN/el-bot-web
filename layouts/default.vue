@@ -53,11 +53,11 @@ export default {
       title: 'El Bot'
     }
   },
-  methods: {
-    getAvatarById
-  },
   created() {
     this.$axios.setBaseURL(this.$store.state.auth.apiUrl)
+  },
+  methods: {
+    getAvatarById
   }
 }
 </script>
