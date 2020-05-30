@@ -1,10 +1,22 @@
 export const state = () => ({
-  urls: []
+  urls: [],
+  dialog: false,
+  uploadInfo: {
+    imageId: '',
+    path: '',
+    url: ''
+  }
 })
 
 export const mutations = {
+  setDialog(state, dialog) {
+    state.dialog = dialog
+  },
   setUrls(state, urls) {
     state.urls = urls
+  },
+  setUploadInfo(state, uploadInfo) {
+    state.uploadInfo = uploadInfo
   }
 }
 
@@ -20,5 +32,21 @@ export const actions = {
         this.$toast.success('图片发送成功')
         this.$toast.success(res)
       })
+  },
+  async upload({ commit }, form) {
+    const options = {
+      method: 'POST',
+      headers: {
+        post: { 'Content-Type': 'multipart/form-data' }
+      },
+      data: form,
+      url: '/uploadImage'
+    }
+    await this.$axios(options).then((res) => {
+      if (res.status === 200) {
+        commit('setUploadInfo', res.data)
+        commit('setDialog', true)
+      }
+    })
   }
 }

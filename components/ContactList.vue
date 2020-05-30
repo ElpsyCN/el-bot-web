@@ -5,7 +5,7 @@
       <v-toolbar-title>{{ listName }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
+        <v-icon>$mdiMagnify</v-icon>
       </v-btn>
     </v-toolbar>
     <v-list class="py-0" height="74vh" style="overflow:auto">

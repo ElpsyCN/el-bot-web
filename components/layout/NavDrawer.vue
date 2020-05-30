@@ -34,34 +34,32 @@
 </template>
 
 <script>
-import icons from '~/assets/utils/icons'
 export default {
   data() {
     return {
-      icons,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: '$mdiApps',
           title: '欢迎',
           to: '/'
         },
         {
-          icon: icons.mdiCircleOutline,
+          icon: '$mdiCircleOutline',
           title: '开始',
           to: '/start'
         },
         {
-          icon: icons.mdiViewDashboard,
+          icon: '$mdiViewDashboard',
           title: '仪表盘',
           to: '/dashboard'
         },
         {
-          icon: icons.mdiConsole,
+          icon: '$mdiConsole',
           title: '控制台',
           to: '/console'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: '$mdiChartBubble',
           title: '关于',
           to: '/about'
         }
