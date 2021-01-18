@@ -25,17 +25,15 @@
 </template>
 
 <script>
-import icons from '~/assets/utils/icons'
 import SendImageMessage from '~/components/message/SendImageMessage'
 export default {
   components: {
-    SendImageMessage
+    SendImageMessage,
   },
   data() {
     return {
-      icons,
       valid: false,
-      dialog: false
+      dialog: false,
     }
   },
   computed: {
@@ -45,16 +43,16 @@ export default {
       },
       set(val) {
         this.$store.commit('messages/setMessage', val)
-      }
-    }
+      },
+    },
   },
   methods: {
     sendMessage() {
       if (this.message) {
         this.$store.dispatch('messages/send')
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

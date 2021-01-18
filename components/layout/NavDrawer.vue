@@ -17,12 +17,12 @@
       </v-list-item>
     </v-list>
 
-    <template v-slot:append>
+    <template #append>
       <div class="pa-2">
         <span
           >&copy;
           <a
-            style="color: gray;text-decoration: none"
+            style="color: gray; text-decoration: none"
             href="https://github.com/ElpsyCN/el-bot-web"
             target="_blank"
             >ElpsyCN</a
@@ -41,29 +41,29 @@ export default {
         {
           icon: '$mdiApps',
           title: '欢迎',
-          to: '/'
+          to: '/',
         },
         {
           icon: '$mdiCircleOutline',
           title: '开始',
-          to: '/start'
+          to: '/start',
         },
         {
           icon: '$mdiViewDashboard',
           title: '仪表盘',
-          to: '/dashboard'
+          to: '/dashboard',
         },
         {
           icon: '$mdiConsole',
           title: '控制台',
-          to: '/console'
+          to: '/console',
         },
         {
           icon: '$mdiChartBubble',
           title: '关于',
-          to: '/about'
-        }
-      ]
+          to: '/about',
+        },
+      ],
     }
   },
   computed: {
@@ -73,8 +73,8 @@ export default {
       },
       set(val) {
         this.$store.commit('setDrawer', val)
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>

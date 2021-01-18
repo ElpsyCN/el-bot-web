@@ -1,6 +1,6 @@
 export const state = () => ({
   drawer: false,
-  loading: false
+  loading: false,
 })
 
 export const mutations = {
@@ -9,11 +9,11 @@ export const mutations = {
   },
   setLoading(state, loading) {
     state.loading = loading
-  }
+  },
 }
 
 export const actions = {
   toggleDrawer({ commit, state }) {
     commit('setDrawer', !state.drawer)
-  }
+  },
 }

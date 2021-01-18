@@ -1,13 +1,13 @@
-import mdiSvg from '~/assets/utils/icons'
+import * as mdiSvg from '~/assets/utils/icons'
 
 export default {
   breakpoint: {},
   icons: {
     iconfont: 'mdiSvg',
     values: {
-      ...mdiSvg
-    }
+      ...mdiSvg,
+    },
   },
   lang: {},
-  theme: {}
+  theme: {},
 }

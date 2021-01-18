@@ -10,21 +10,21 @@ export default {
   props: {
     id: {
       type: Number,
-      default: 0
+      default: 0,
     },
     type: {
       type: String,
-      default: 'qq'
+      default: 'qq',
     },
     size: {
       type: Number,
-      default: 100
-    }
+      default: 100,
+    },
   },
   computed: {
     img() {
       return getAvatarById(this.id, this.type, this.size)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -2,18 +2,18 @@
 
 <template>
   <v-card outlined height="55vh" class="message-list-container">
-    <v-timeline dense align-top reverse="" style="height:55vh;overflow: auto">
+    <v-timeline dense align-top reverse="" style="height: 55vh; overflow: auto">
       <v-timeline-item
         v-for="(item, i) in $store.state.messages.list.slice()"
         :key="i"
         class="message-item"
       >
-        <template v-slot:icon>
+        <template #icon>
           <v-avatar size="40">
             <img :src="getAvatarById($store.state.auth.qq, 'qq', 100)" />
           </v-avatar>
         </template>
-        <template v-slot:opposite>
+        <template #opposite>
           <span>{{ item.sender.id }}</span>
         </template>
         <v-card v-if="item.messageChain">
@@ -33,8 +33,8 @@
 import { getAvatarById } from '~/assets/utils/index'
 export default {
   methods: {
-    getAvatarById
-  }
+    getAvatarById,
+  },
 }
 </script>
 

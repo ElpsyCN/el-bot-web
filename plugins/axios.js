@@ -40,7 +40,7 @@ function handleStatusCode(code) {
   return msg
 }
 
-export default function({ app, $axios, store }) {
+export default function ({ app, $axios, store }) {
   if (store.state.auth.sessionKey) {
     $axios.onRequest((config) => {
       store.commit('setLoading', true)
@@ -63,7 +63,7 @@ export default function({ app, $axios, store }) {
             store.dispatch('auth/login', {
               apiUrl: localStorage.getItem(prefix + 'apiUrl'),
               authKey: localStorage.getItem(prefix + 'authKey'),
-              qq: localStorage.getItem(prefix + 'qq')
+              qq: localStorage.getItem(prefix + 'qq'),
             })
           }
         }

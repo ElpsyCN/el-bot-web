@@ -2,7 +2,12 @@
 require('dotenv').config()
 
 export default {
-  mode: 'spa',
+  // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
+  ssr: false,
+
+  // Target (https://go.nuxtjs.dev/config-target)
+  target: 'static',
+
   /*
    ** Headers of the page
    */
@@ -15,23 +20,25 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar color
    */
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
+
+  // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['~/assets/scss/custom.scss'],
-  /*
-   ** Plugins to load before mounting the App
-   */
-  plugins: ['~/plugins/axios'],
+
+  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+  plugins: ['~/plugins/axios', '~/plugins/mirai.ts'],
+
+  // Auto import components (https://go.nuxtjs.dev/config-components)
+  components: true,
+
   /*
    ** Nuxt.js dev-modules
    */
@@ -41,7 +48,7 @@ export default {
     '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
   ],
   /*
    ** Nuxt.js modules
@@ -50,7 +57,9 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    // https://go.nuxtjs.dev/content
+    '@nuxt/content',
   ],
 
   /*
@@ -58,29 +67,25 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.API_BASE_URL || 'http://localhost:8080'
+    baseURL: process.env.API_BASE_URL || 'http://localhost:8080',
   },
+
   // https://github.com/nuxt-community/modules/tree/master/packages/toast
   toast: {
     theme: 'outline',
-    duration: 3000
+    duration: 3000,
   },
-  /*
-   ** vuetify module configuration
-   ** https://github.com/nuxt-community/vuetify-module
-   */
+
+  // Content module configuration (https://go.nuxtjs.dev/config-content)
+  content: {},
+
+  // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     defaultAssets: false,
-    optionsPath: '~/plugins/vuetify.options.js'
+    optionsPath: '~/plugins/vuetify.options.js',
   },
-  /*
-   ** Build configuration
-   */
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    // extend(config, ctx) {}
-  }
+
+  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  build: {},
 }

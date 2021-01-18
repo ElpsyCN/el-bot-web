@@ -22,7 +22,7 @@
         icon
         @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark"
       >
-        <v-icon>{{ icons.mdiInvertColors }}</v-icon>
+        <v-icon>$mdiInvertColors</v-icon>
       </v-btn>
       <v-progress-linear
         :active="$store.state.loading"
@@ -31,33 +31,31 @@
         bottom
       ></v-progress-linear>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <v-container fluid>
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import icons from '~/assets/utils/icons'
 import { getAvatarById } from '~/assets/utils/index'
 import NavDrawer from '~/components/layout/NavDrawer'
 export default {
   components: {
-    NavDrawer
+    NavDrawer,
   },
   data() {
     return {
-      icons,
-      title: 'El Bot'
+      title: 'El Bot',
     }
   },
   created() {
     this.$axios.setBaseURL(this.$store.state.auth.apiUrl)
   },
   methods: {
-    getAvatarById
-  }
+    getAvatarById,
+  },
 }
 </script>

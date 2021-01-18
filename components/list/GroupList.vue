@@ -19,7 +19,7 @@
           :color="getColorByPermission(item.permission)"
           :title="getRoleByPermission(item.permission)"
         >
-          {{ icons.mdiAccount }}
+          $mdiAccount
         </v-icon>
       </v-list-item-icon>
     </v-list-item>
@@ -28,19 +28,13 @@
 
 <script>
 import { mapState } from 'vuex'
-import icons from '~/assets/utils/icons'
 import ItemAvatar from '~/components/list/ItemAvatar'
 export default {
   components: {
-    ItemAvatar
-  },
-  data() {
-    return {
-      icons
-    }
+    ItemAvatar,
   },
   computed: {
-    ...mapState('groups', ['list'])
+    ...mapState('groups', ['list']),
   },
   mounted() {
     this.$store.dispatch('groups/get')
@@ -83,7 +77,7 @@ export default {
           break
       }
       return role
-    }
-  }
+    },
+  },
 }
 </script>

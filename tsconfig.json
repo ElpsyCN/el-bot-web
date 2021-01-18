@@ -3,6 +3,7 @@
     "target": "es2018",
     "module": "esnext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "lib": ["esnext", "esnext.asynciterable", "dom"],
     "esModuleInterop": true,
     "allowJs": true,
@@ -15,7 +16,13 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@types/node", "@nuxt/types", "@nuxtjs/vuetify"]
+    "types": [
+      "@types/node",
+      "@nuxt/types",
+      "@nuxtjs/axios",
+      "@nuxtjs/vuetify",
+      "mirai-ts"
+    ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

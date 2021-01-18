@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-menu top offset-y>
-      <template v-slot:activator="{ on }">
+      <template #activator="{ on }">
         <v-btn icon color="primary" title="发送图片" v-on="on">
           <v-icon>$vuetify.icons.mdiImage</v-icon>
         </v-btn>
@@ -25,7 +25,7 @@ export default {
   components: {
     SendImageByUrl,
     UploadImage,
-    UploadImageInfo
-  }
+    UploadImageInfo,
+  },
 }
 </script>

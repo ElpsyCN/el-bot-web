@@ -1,9 +1,7 @@
 <template>
   <v-dialog v-model="dialog" max-width="600" persistent>
     <v-card>
-      <v-card-title>
-        图片上传信息
-      </v-card-title>
+      <v-card-title> 图片上传信息 </v-card-title>
       <v-card-text>
         <v-form ref="form">
           <v-text-field
@@ -25,9 +23,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" text @click="dialog = false">
-          关闭
-        </v-btn>
+        <v-btn color="primary" text @click="dialog = false"> 关闭 </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -44,9 +40,9 @@ export default {
       },
       set(val) {
         this.$store.commit('messages/image/setDialog', val)
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>
 

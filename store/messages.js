@@ -2,7 +2,7 @@ export const state = () => ({
   message: '',
   list: [],
   target: 0,
-  type: 'group'
+  type: 'group',
 })
 
 export const mutations = {
@@ -20,35 +20,29 @@ export const mutations = {
   },
   setType(state, type) {
     state.type = type
-  }
+  },
 }
 
 export const actions = {
   async sendFriendMessage({ state }, messageChain) {
-    return await this.$axios
-      .$post('/sendFriendMessage', {
-        target: state.target,
-        messageChain
-      })
-      .then((data) => {
-        if (data.code === 0) {
-          this.$toast.success('发送成功')
-          return data.messageId
-        }
-      })
+    const data = await window.$mirai.api.sendFriendMessage(
+      messageChain,
+      state.target
+    )
+    if (data.code === 0) {
+      this.$toast.success('发送成功')
+      return data.messageId
+    }
   },
   async sendGroupMessage({ state }, messageChain) {
-    return await this.$axios
-      .$post('/sendGroupMessage', {
-        target: state.target,
-        messageChain
-      })
-      .then((data) => {
-        if (data.code === 0) {
-          this.$toast.success('发送成功')
-          return data.messageId
-        }
-      })
+    const data = await window.$mirai.api.sendGroupMessage(
+      messageChain,
+      state.target
+    )
+    if (data.code === 0) {
+      this.$toast.success('发送成功')
+      return data.messageId
+    }
   },
   // 发送消息
   async send({ commit, dispatch, rootState, state }) {
@@ -59,7 +53,7 @@ export const actions = {
     const messageChain = []
     messageChain.push({
       type: 'Plain',
-      text: state.message
+      text: state.message,
     })
     let messageId = 0
     if (state.type === 'group') {
@@ -70,11 +64,11 @@ export const actions = {
     commit('add', {
       id: messageId,
       sender: {
-        id: rootState.auth.qq
+        id: rootState.auth.qq,
       },
       target: state.target,
       type: state.type,
-      messageChain
+      messageChain,
     })
     commit('setMessage', '')
   },
@@ -82,7 +76,7 @@ export const actions = {
   recall({ commit }, target) {
     this.$axios
       .$post('/recall', {
-        target
+        target,
       })
       .then((data) => {
         if (data.code === 0) {
@@ -90,5 +84,5 @@ export const actions = {
           commit('remove', target)
         }
       })
-  }
+  },
 }

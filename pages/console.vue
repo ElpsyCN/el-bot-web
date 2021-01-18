@@ -17,14 +17,14 @@ import ContactList from '~/components/ContactList'
 import MessageList from '~/components/message/MessageList'
 import SendMessage from '~/components/message/SendMessage'
 export default {
-  middleware: 'auth',
   components: {
     ContactList,
     MessageList,
-    SendMessage
+    SendMessage,
   },
+  middleware: 'auth',
   head: {
-    title: '控制台'
-  }
+    title: '控制台',
+  },
 }
 </script>

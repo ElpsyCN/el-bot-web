@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" max-width="600px">
-    <template v-slot:activator="{ on }">
+    <template #activator="{ on }">
       <v-list-item v-on="on">
         <v-list-item-title>发送图片消息（通过链接）</v-list-item-title>
       </v-list-item>
@@ -33,13 +33,11 @@
 </template>
 
 <script>
-import icons from '~/assets/utils/icons'
 export default {
   data() {
     return {
-      icons,
       dialog: false,
-      url: ''
+      url: '',
     }
   },
   methods: {
@@ -50,7 +48,7 @@ export default {
       } else {
         this.$toast.error('您这图要发给谁？')
       }
-    }
-  }
+    },
+  },
 }
 </script>

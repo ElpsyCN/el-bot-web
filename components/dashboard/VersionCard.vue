@@ -25,11 +25,11 @@ export default {
         return {
           logo: 'https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg',
           name: '',
-          version: ''
+          version: '',
         }
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>
 

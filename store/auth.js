@@ -5,7 +5,7 @@ export const state = () => ({
   authKey: localStorage.getItem(prefix + 'authKey') || '',
   qq: localStorage.getItem(prefix + 'qq') || 0,
   sessionKey: localStorage.getItem(prefix + 'sessionKey') || '',
-  verify: localStorage.getItem(prefix + 'verify') || false
+  verify: localStorage.getItem(prefix + 'verify') || false,
 })
 
 export const mutations = {
@@ -38,7 +38,7 @@ export const mutations = {
     verify
       ? localStorage.setItem(prefix + 'verify', verify)
       : localStorage.removeItem(prefix + 'verify')
-  }
+  },
 }
 
 export const actions = {
@@ -46,7 +46,7 @@ export const actions = {
     await this.$axios
       .$post('/verify', {
         sessionKey: state.sessionKey,
-        qq: state.qq
+        qq: state.qq,
       })
       .then((res) => {
         if (res.code === 0) {
@@ -61,7 +61,7 @@ export const actions = {
   async auth({ commit, dispatch }, authKey) {
     await this.$axios
       .$post('/auth', {
-        authKey
+        authKey,
       })
       .then(async (data) => {
         if (data.code === 0) {
@@ -83,7 +83,7 @@ export const actions = {
     await this.$axios
       .$post('/release', {
         sessionKey: state.sessionKey,
-        qq: state.qq
+        qq: state.qq,
       })
       .then((data) => {
         if (data.code === 0) {
@@ -102,5 +102,5 @@ export const actions = {
     commit('setQq', 0)
     commit('setVerify', false)
     this.$router.push('/')
-  }
+  },
 }

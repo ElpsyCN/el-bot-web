@@ -46,9 +46,7 @@
           登录
         </v-btn>
 
-        <v-btn color="error" class="mr-4" @click="reset">
-          重置
-        </v-btn>
+        <v-btn color="error" class="mr-4" @click="reset"> 重置 </v-btn>
       </v-form>
     </v-card>
   </v-flex>
@@ -57,10 +55,10 @@
 <script>
 import BotLogo from '~/components/BotLogo'
 export default {
-  middleware: 'logged',
   components: {
-    BotLogo
+    BotLogo,
   },
+  middleware: 'logged',
   data() {
     return {
       loading: false,
@@ -70,14 +68,14 @@ export default {
       authKey: process.env.AUTH_KEY || '',
       authKeyRules: [
         (v) => !!v || 'authKey 是用来验证的',
-        (v) => (v && v.length >= 8) || 'authKey 最短为 8 位'
+        (v) => (v && v.length >= 8) || 'authKey 最短为 8 位',
       ],
       qq: process.env.QQ || '',
       qqRules: [
         (v) => !!v || 'QQ 你总得填吧',
-        (v) => /^[1-9][0-9]{4,9}$/gi.test(v) || '不是有效的 QQ 号'
+        (v) => /^[1-9][0-9]{4,9}$/gi.test(v) || '不是有效的 QQ 号',
       ],
-      checkbox: false
+      checkbox: false,
     }
   },
   methods: {
@@ -86,13 +84,13 @@ export default {
       await this.$store.dispatch('auth/login', {
         apiUrl: this.apiUrl,
         authKey: this.authKey,
-        qq: this.qq
+        qq: this.qq,
       })
       this.loading = false
     },
     reset() {
       this.$refs.form.reset()
-    }
-  }
+    },
+  },
 }
 </script>

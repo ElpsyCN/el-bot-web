@@ -8,7 +8,7 @@
         <v-icon>$mdiMagnify</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-list class="py-0" height="74vh" style="overflow:auto">
+    <v-list class="py-0" height="74vh" style="overflow: auto">
       <friend-list v-if="activePanel === 'friends'"></friend-list>
       <group-list v-if="activePanel === 'groups'"></group-list>
     </v-list>
@@ -21,32 +21,30 @@
     >
       <v-btn value="friends">
         <span>好友列表</span>
-        <v-icon>{{ icons.mdiAccount }}</v-icon>
+        <v-icon>$mdiAccount</v-icon>
       </v-btn>
       <v-btn value="groups">
         <span>群列表</span>
-        <v-icon>{{ icons.mdiAccountMultiple }}</v-icon>
+        <v-icon>$mdiAccountMultiple</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-card>
 </template>
 
 <script>
-import icons from '~/assets/utils/icons'
 import FriendList from '~/components/list/FriendList'
 import GroupList from '~/components/list/GroupList'
 export default {
   components: {
     FriendList,
-    GroupList
+    GroupList,
   },
   data() {
     return {
-      icons,
       listName: '列表',
       switch: false,
-      activePanel: 'groups'
+      activePanel: 'groups',
     }
-  }
+  },
 }
 </script>

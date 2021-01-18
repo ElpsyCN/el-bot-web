@@ -4,8 +4,8 @@ export const state = () => ({
   uploadInfo: {
     imageId: '',
     path: '',
-    url: ''
-  }
+    url: '',
+  },
 })
 
 export const mutations = {
@@ -17,7 +17,7 @@ export const mutations = {
   },
   setUploadInfo(state, uploadInfo) {
     state.uploadInfo = uploadInfo
-  }
+  },
 }
 
 export const actions = {
@@ -26,7 +26,7 @@ export const actions = {
     await this.$axios
       .$post('/sendImageMessage', {
         target: rootState.messages.target,
-        urls: state.urls
+        urls: state.urls,
       })
       .then((res) => {
         this.$toast.success('图片发送成功')
@@ -37,10 +37,10 @@ export const actions = {
     const options = {
       method: 'POST',
       headers: {
-        post: { 'Content-Type': 'multipart/form-data' }
+        post: { 'Content-Type': 'multipart/form-data' },
       },
       data: form,
-      url: '/uploadImage'
+      url: '/uploadImage',
     }
     await this.$axios(options).then((res) => {
       if (res.status === 200) {
@@ -48,5 +48,5 @@ export const actions = {
         commit('setDialog', true)
       }
     })
-  }
+  },
 }

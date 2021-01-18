@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-dialog v-model="dialog" max-width="600px">
-      <template v-slot:activator="{ on }">
+      <template #activator="{ on }">
         <v-list-item v-on="on">
           <v-list-item-title>上传图片</v-list-item-title>
         </v-list-item>
@@ -35,9 +35,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn text @click="dialog = false">关闭</v-btn>
-          <v-btn color="blue darken-1" text @click="uploadImage">
-            发送
-          </v-btn>
+          <v-btn color="blue darken-1" text @click="uploadImage"> 发送 </v-btn>
         </v-card-actions></v-card
       >
     </v-dialog>
@@ -50,7 +48,7 @@ export default {
     return {
       dialog: false,
       img: null,
-      type: 'group'
+      type: 'group',
     }
   },
   methods: {
@@ -61,7 +59,7 @@ export default {
       form.append('img', this.img)
       await this.$store.dispatch('messages/image/upload', form)
       this.dialog = false
-    }
-  }
+    },
+  },
 }
 </script>

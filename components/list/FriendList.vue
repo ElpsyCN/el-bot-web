@@ -21,19 +21,13 @@
 
 <script>
 import { mapState } from 'vuex'
-import icons from '~/assets/utils/icons'
 import ItemAvatar from '~/components/list/ItemAvatar'
 export default {
   components: {
-    ItemAvatar
-  },
-  data() {
-    return {
-      icons
-    }
+    ItemAvatar,
   },
   computed: {
-    ...mapState('friends', ['list'])
+    ...mapState('friends', ['list']),
   },
   mounted() {
     this.$store.dispatch('friends/get')
@@ -42,7 +36,7 @@ export default {
     setTarget(target) {
       this.$store.commit('messages/setType', 'friend')
       this.$store.commit('messages/setTarget', target)
-    }
-  }
+    },
+  },
 }
 </script>
