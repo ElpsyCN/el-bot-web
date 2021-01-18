@@ -65,12 +65,12 @@ export default {
       valid: false,
       apiUrl: process.env.API_BASE_URL || '',
       apiUrlRules: [(v) => !!v || 'API URL 是必须的'],
-      authKey: process.env.AUTH_KEY || '',
+      authKey: process.env.MAH_AUTH_KEY || '',
       authKeyRules: [
         (v) => !!v || 'authKey 是用来验证的',
         (v) => (v && v.length >= 8) || 'authKey 最短为 8 位',
       ],
-      qq: process.env.QQ || '',
+      qq: process.env.BOT_QQ || '',
       qqRules: [
         (v) => !!v || 'QQ 你总得填吧',
         (v) => /^[1-9][0-9]{4,9}$/gi.test(v) || '不是有效的 QQ 号',
