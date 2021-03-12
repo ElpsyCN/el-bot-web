@@ -11,6 +11,8 @@
 
 Deving...
 
+Wait Nuxt3.
+
 ## Build Setup
 
 ```bash
@@ -33,5 +35,6 @@ $ yarn generate
 - [mirai](https://github.com/mamoe/mirai)
 - [mirai-console](https://github.com/mamoe/mirai-console)
 - [mirai-api-http](https://github.com/mamoe/mirai-api-http)
+- [mirai-ts](https://github.com/YunYouJun/mirai-ts)
 - [Nuxt.js](https://github.com/nuxt/nuxt.js)
 - [Vuetify](https://github.com/vuetifyjs/vuetify)
